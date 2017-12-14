@@ -3,3 +3,25 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.app {
+  padding: 1rem;
+}
+
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  align-self: flex-start;
+  margin: 0 auto;
+  /* min-height: 200px; */
+  width: 300px;
+  border: #ddd 1px solid;
+}
+
+.item__inner {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
