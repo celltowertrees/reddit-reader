@@ -5,8 +5,6 @@ const Item = (props) => {
   const item = props.post.data;
   const hasImage = item.thumbnail && item.thumbnail !== 'default' && item.thumbnail !== 'nsfw' && item.thumbnail !== 'image' && item.thumbnail !== 'self';
 
-  console.log(item);
-
   return (
     <div className="item">
       <a href={permalink} target="_blank">

@@ -36,14 +36,13 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.hotPosts);
 
     return (
       <div className="app">
         <div className="item-list">
           <ItemList items={this.state.hotPosts.children} />
         </div>
-        <div>
+        <div className="pagination">
           <button onClick={this.onPrevClick}>Previous</button>
           <button onClick={this.onNextClick}>Next</button>
         </div>
