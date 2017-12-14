@@ -2,6 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  letter-spacing: 0.02rem;
+  line-height: 1.2rem;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
 }
 
 .app {
@@ -15,13 +22,55 @@ body {
 
 .item {
   align-self: flex-start;
-  margin: 0 auto;
-  /* min-height: 200px; */
-  width: 300px;
+  margin: 1rem auto;
+  width: 225px;
   border: #ddd 1px solid;
 }
 
 .item__inner {
   margin: 0.5rem;
+  min-height: 250px;
   padding: 0.5rem;
 }
+
+.item__title {
+  /* text-align: center; */
+  margin: 1rem 0;
+}
+
+.item__subreddit {
+  font-size: 0.85rem;
+}
+
+.item__thumbnail img {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  border: #ddd 1px solid;
+}
+
+.item__flair {
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: #aaa;
+  color: #fff;
+  padding: 0.1rem 0.2rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+
+.item__meta {
+  font-size: 0.85rem;
+}
+
+.item__domain {
+  display: block;
+  font-style: italic;
+}
+
+.item__subreddit {
+  font-weight: bold;
+  color: #369;
+}
+
