@@ -1,19 +1,50 @@
 import React, { Component } from 'react';
 import './App.css';
-import Item from './components/item';
+import ItemList from './components/item-list';
+
+
+const url = 'http://www.reddit.com/r/all/hot.json?limit=5';
 
 class App extends Component {
-  render() {
-    console.log(this.props.hotPosts);
+  constructor(props) {
+    super(props);
 
-    // there's a better way to do this
-    const hotPosts = this.props.hotPosts.data.children.map((post) => {
-      return <Item key={post.data.id} post={post.data.title} />
+    this.state = {
+      hotPosts: this.props.hotPosts.data
+    }
+
+    this.onNextClick = this.onNextClick.bind(this);
+    this.onPrevClick = this.onPrevClick.bind(this);
+  }
+
+  fetchPage(url) {
+    fetch(url, {
+      method: 'GET'
+    }).then(res => {
+      return res.json();
+    }).then((json) => {
+      this.setState({ hotPosts: json.data });
     });
+  }
+
+  onPrevClick() {
+    this.fetchPage(`${url}&before=${this.state.hotPosts.before}`);
+  }
+
+  onNextClick() {
+    this.fetchPage(`${url}&after=${this.state.hotPosts.after}`);
+  }
+
+  render() {
+    console.log(this.state.hotPosts);
 
     return (
       <div className="App">
-        <h1>{hotPosts}</h1>
+        <ItemList items={this.state.hotPosts.children} />
+        <div>
+          <button onClick={this.onPrevClick}>Previous</button>
+          <button onClick={this.onNextClick}>Next</button>
+        </div>
       </div>
     );
   }
