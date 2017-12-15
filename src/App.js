@@ -10,11 +10,15 @@ class App extends Component {
     super(props);
 
     this.state = {
-      hotPosts: this.props.hotPosts.data
+      hotPosts: null
     }
 
     this.onNextClick = this.onNextClick.bind(this);
     this.onPrevClick = this.onPrevClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchPage(url);
   }
 
   fetchPage(url) {
@@ -24,6 +28,7 @@ class App extends Component {
       return res.json();
     }).then((json) => {
       this.setState({ hotPosts: json.data });
+      console.log(json.data);
     });
   }
 
@@ -36,18 +41,22 @@ class App extends Component {
   }
 
   render() {
-
-    return (
-      <div className="app">
-        <div className="item-list">
-          <ItemList items={this.state.hotPosts.children} />
+    console.log(this.state.hotPosts);
+    if (this.state.hotPosts) {
+      return (
+        <div className="app">
+          <div className="item-list">
+            <ItemList items={this.state.hotPosts.children} />
+          </div>
+          <div className="pagination">
+            <button onClick={this.onPrevClick}>Previous</button>
+            <button onClick={this.onNextClick}>Next</button>
+          </div>
         </div>
-        <div className="pagination">
-          <button onClick={this.onPrevClick}>Previous</button>
-          <button onClick={this.onNextClick}>Next</button>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>Loading...</p>
+    }
   }
 }
 
